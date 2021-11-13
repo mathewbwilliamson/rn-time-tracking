@@ -12,7 +12,7 @@ import TimeItem from "./TimeItem";
 
 export default function TimesContainer({ path }: { path: string }) {
   const [times, setTimes] = React.useState<TimeRecord[]>();
-  const [todaysDate, setTodaysDate] = React.useState<string>(() =>
+  const [todaysDate] = React.useState<string>(() =>
     formatStandardDate(new Date())
   );
   const { getItem, setItem } = useAsyncStorage("@times");
@@ -43,10 +43,7 @@ export default function TimesContainer({ path }: { path: string }) {
   console.log("\x1b[41m%s \x1b[0m", "FIXME: [matt] RENDER times", times);
 
   return (
-    <View style={styles.getStartedContainer}>
-      {/* <Text style={styles.getStartedText}>
-        Open up the code for this screen: this is a test
-      </Text> */}
+    <View style={styles.timesContainer}>
       <FlatList
         keyExtractor={(item) => item.id}
         data={sortTimesByName(times || [])}
@@ -66,13 +63,7 @@ export default function TimesContainer({ path }: { path: string }) {
 }
 
 const styles = StyleSheet.create({
-  getStartedContainer: {
-    // alignItems: "center",
-    // height: "100%",
-  },
-  getStartedText: {
-    fontSize: 16,
-    lineHeight: 24,
-    // textAlign: "center",
+  timesContainer: {
+    width: "100%",
   },
 });
