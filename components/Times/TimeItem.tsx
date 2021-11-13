@@ -1,11 +1,7 @@
 import React from "react";
 import { Button, StyleSheet } from "react-native";
 import { TimeRecord } from "../../types/timeTypes";
-import {
-  formatStandardDate,
-  formatToTime,
-  getMostRecentTimeByDate,
-} from "../../utils/timeUtils";
+import { getMostRecentTimeByDate } from "../../utils/timeUtils";
 import { Text, View } from "../Themed";
 
 export default function TimeItem({
@@ -17,6 +13,7 @@ export default function TimeItem({
   setEndTime: (id: string, date: string, startTime: string) => void;
   addNewStartTime: (id: string, date: string) => void;
 }) {
+  // FIXME: [matt] TODO: Get the date here working so that it is current
   const recentTimeSet = getMostRecentTimeByDate(
     timeElement.times,
     "2021-11-11"
