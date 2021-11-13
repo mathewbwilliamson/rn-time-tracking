@@ -1,7 +1,9 @@
+import { parseISO } from "date-fns";
 import React from "react";
 import { Button, StyleSheet } from "react-native";
 import { TimeRecord } from "../../types/timeTypes";
-import { getMostRecentTimeByDate } from "../../utils/timeUtils";
+import { formatStandardDate } from "../../utils/abstractTimeUtils";
+import { getMostRecentTimeByDate } from "../../utils/timesArrayUtils";
 import { Text, View } from "../Themed";
 
 export default function TimeItem({
@@ -13,11 +15,9 @@ export default function TimeItem({
   setEndTime: (id: string, date: string, startTime: string) => void;
   addNewStartTime: (id: string, date: string) => void;
 }) {
-  // FIXME: [matt] TODO: Get the date here working so that it is current
-  const recentTimeSet = getMostRecentTimeByDate(
-    timeElement.times,
-    "2021-11-11"
-  );
+  const todaysDate = formatStandardDate(new Date());
+
+  const recentTimeSet = getMostRecentTimeByDate(timeElement.times, todaysDate);
 
   return (
     <View style={styles.getStartedContainer}>
@@ -27,14 +27,14 @@ export default function TimeItem({
       <Button
         onPress={() => {
           console.log("\x1b[42m%s \x1b[0m", "FIXME: [matt] hit");
-          if (!recentTimeSet?.endTime) {
+          if (!recentTimeSet?.endTime && !!recentTimeSet?.startTime) {
             setEndTime(
               timeElement.id,
-              "2021-11-11",
+              todaysDate,
               recentTimeSet?.startTime || ""
             );
           } else {
-            addNewStartTime(timeElement.id, "2021-11-11");
+            addNewStartTime(timeElement.id, todaysDate);
           }
         }}
         title={"Log"}
