@@ -2,13 +2,19 @@ import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { TimeRecord } from "../../types/timeTypes";
-import { sortTimesByName } from "../../utils/abstractTimeUtils";
+import {
+  formatStandardDate,
+  sortTimesByName,
+} from "../../utils/abstractTimeUtils";
 import { createEndTime, createStartTime } from "../../utils/timesArrayUtils";
 import { View } from "../Themed";
 import TimeItem from "./TimeItem";
 
 export default function TimesContainer({ path }: { path: string }) {
   const [times, setTimes] = React.useState<TimeRecord[]>();
+  const [todaysDate, setTodaysDate] = React.useState<string>(() =>
+    formatStandardDate(new Date())
+  );
   const { getItem, setItem } = useAsyncStorage("@times");
 
   React.useEffect(() => {
@@ -50,6 +56,7 @@ export default function TimesContainer({ path }: { path: string }) {
               timeElement={item}
               setEndTime={setEndTime}
               addNewStartTime={addNewStartTime}
+              todaysDate={todaysDate}
             />
           );
         }}

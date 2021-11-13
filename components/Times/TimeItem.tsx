@@ -6,17 +6,19 @@ import { formatStandardDate } from "../../utils/abstractTimeUtils";
 import { getMostRecentTimeByDate } from "../../utils/timesArrayUtils";
 import { Text, View } from "../Themed";
 
+interface TimeItemProps {
+  timeElement: TimeRecord;
+  setEndTime: (id: string, date: string, startTime: string) => void;
+  addNewStartTime: (id: string, date: string) => void;
+  todaysDate: string;
+}
+
 export default function TimeItem({
   timeElement,
   setEndTime,
   addNewStartTime,
-}: {
-  timeElement: TimeRecord;
-  setEndTime: (id: string, date: string, startTime: string) => void;
-  addNewStartTime: (id: string, date: string) => void;
-}) {
-  const todaysDate = formatStandardDate(new Date());
-
+  todaysDate,
+}: TimeItemProps) {
   const recentTimeSet = getMostRecentTimeByDate(timeElement.times, todaysDate);
 
   return (
