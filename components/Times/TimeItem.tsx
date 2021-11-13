@@ -1,16 +1,14 @@
-import { parseISO } from "date-fns";
 import React from "react";
 import { Button, StyleSheet } from "react-native";
 import {
-  primaryActionColor,
-  secondaryActionColor,
-  standardSpacing,
-  secondaryBackgroundColor,
   backgroundColor,
   basicFontSize,
+  primaryActionColor,
+  secondaryActionColor,
+  secondaryBackgroundColor,
+  standardSpacing,
 } from "../../styles/styleVariables";
 import { TimeRecord } from "../../types/timeTypes";
-import { formatStandardDate } from "../../utils/abstractTimeUtils";
 import { getMostRecentTimeByDate } from "../../utils/timesArrayUtils";
 import { Text, View } from "../Themed";
 
@@ -29,6 +27,7 @@ export default function TimeItem({
 }: TimeItemProps) {
   const recentTimeSet = getMostRecentTimeByDate(timeElement.times, todaysDate);
   const isActive = !recentTimeSet?.endTime && !!recentTimeSet?.startTime;
+
   return (
     <View style={styles.timeItemContainer}>
       <Text style={styles.timeHeader}>{timeElement.label}</Text>
