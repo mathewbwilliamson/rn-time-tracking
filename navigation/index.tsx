@@ -19,7 +19,7 @@ import useColorScheme from "../hooks/useColorScheme";
 import ModalScreen from "../screens/ModalScreen";
 import NotFoundScreen from "../screens/NotFoundScreen";
 import TabOneScreen from "../screens/TimesScreen";
-import TabTwoScreen from "../screens/TabTwoScreen";
+import TabTwoScreen from "../screens/AggregateScreen";
 import {
   RootStackParamList,
   RootTabParamList,
@@ -27,6 +27,7 @@ import {
 } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 import TimesScreen from "../screens/TimesScreen";
+import AggregateScreen from "../screens/AggregateScreen";
 
 export default function Navigation({
   colorScheme,
@@ -109,10 +110,10 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="AggregateScreen"
+        component={AggregateScreen}
         options={{
-          title: "Tab Two",
+          title: "Aggregate",
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
