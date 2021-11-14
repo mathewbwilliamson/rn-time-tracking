@@ -1,6 +1,7 @@
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
+import { primaryTextColor } from "../../styles/styleVariables";
 import { TimeRecord } from "../../types/timeTypes";
 import {
   formatStandardDate,

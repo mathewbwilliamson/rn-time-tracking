@@ -4,12 +4,14 @@ import {
   backgroundColor,
   basicFontSize,
   primaryActionColor,
+  primaryTextColor,
   secondaryActionColor,
   secondaryBackgroundColor,
   standardSpacing,
 } from "../../styles/styleVariables";
 import { TimeRecord } from "../../types/timeTypes";
 import { getMostRecentTimeByDate } from "../../utils/timesArrayUtils";
+import { Card } from "../Card/Card";
 import { Text, View } from "../Themed";
 
 interface TimeItemProps {
@@ -29,7 +31,7 @@ export default function TimeItem({
   const isActive = !recentTimeSet?.endTime && !!recentTimeSet?.startTime;
 
   return (
-    <View style={styles.timeItemContainer}>
+    <Card>
       <Text style={styles.timeHeader}>{timeElement.label}</Text>
       <View style={styles.timeGroup}>
         <Text style={styles.startTimeSet}>{recentTimeSet?.startTime}</Text>
@@ -51,22 +53,15 @@ export default function TimeItem({
         title={isActive ? "Stop Activity" : "Start Activity"}
         color={isActive ? primaryActionColor : secondaryActionColor}
       />
-    </View>
+    </Card>
   );
 }
 
 const styles = StyleSheet.create({
-  timeItemContainer: {
-    justifyContent: "center",
-    width: "100%",
-    paddingBottom: standardSpacing,
-    borderBottomColor: secondaryBackgroundColor,
-    borderBottomWidth: standardSpacing,
-    backgroundColor,
-  },
   timeHeader: {
     paddingTop: 12,
     backgroundColor,
+    color: primaryTextColor,
     paddingBottom: standardSpacing / 2,
     alignSelf: "center",
     fontSize: basicFontSize * 1.2,
@@ -83,10 +78,12 @@ const styles = StyleSheet.create({
     width: "50%",
     textAlign: "center",
     fontSize: basicFontSize,
+    color: primaryTextColor,
   },
   endTimeSet: {
     width: "50%",
     textAlign: "center",
     fontSize: basicFontSize,
+    color: primaryTextColor,
   },
 });
